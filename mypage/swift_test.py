@@ -25,11 +25,11 @@ def container_info(container):
 
 
 def object_info(container,obj):
-    headers, content = client.get_object(url = storageURL,
+    headers = client.head_object(url = storageURL,
                                          token = authtoken,
                                          container = container,
                                          name = obj)
-    return headers, content
+    return headers
     
     
 def create_container(container):
@@ -66,5 +66,3 @@ def upload_object(container, obj_name, object_file):
 def download_object(container, objectname):
     url = get_temp_url(container, objectname)
     return url
-
-    

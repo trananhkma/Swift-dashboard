@@ -41,14 +41,14 @@
                     </thead>
                     <tbody>
 
-                        {% for i in objects %}
+                        {% for i,j in objects %}
                             <tr role='row'>
                                 <td class="col-lg-4">
                                     <button type="submit" class="btn-link" name='obj_name' value="{{ i.name }}">
                                         {{ i.name }}
                                     </button>  
                                 </td>
-                                <td class="col-lg-4">{{ i.hash }}</td>
+                                <td class="col-lg-4">{{ j }}</td>
                                 <td>{{ i.last_modified }}</td>                                
                                 <td>{{ i.bytes|filesizeformat }}</td>
                                 <td>
