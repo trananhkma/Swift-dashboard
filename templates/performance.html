@@ -1,0 +1,70 @@
+{% extends 'base/base.html' %}
+
+{% block title %}
+    Performance
+{% endblock %}
+
+{% block active_charts %}
+    active
+{% endblock %}
+
+{% block page-header %}
+    Performance <small>Running</small>
+{% endblock %}
+
+{% block dir-header %}
+    <li class="active">
+        <i class="fa fa-bar-chart-o"></i> Performance
+    </li>
+{% endblock %}
+
+{% block content %}
+    <h3>Tài nguyên người dùng đăng ký</h3>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr class="active">
+                        {% for i in hd2 %}
+                            <th>{{ i }}</th>
+                        {% endfor %}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr role='row'>
+                        {% for i in lst2 %}
+                            <td>{{ i }}</td>
+                        {% endfor %}
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <h3>Tài nguyên sử dụng thực tế</h3>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr class="active">
+                        {% for i in hd %}
+                            <th>{{ i }}</th>
+                        {% endfor %}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr role='row'>
+                        {% for i in lst %}
+                            <td>{{ i }}</td>
+                        {% endfor %}
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

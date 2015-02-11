@@ -1,0 +1,98 @@
+{% extends 'base/base.html' %}
+
+{% block title %}
+    Objects
+{% endblock %}
+
+{% block active_containers %}
+    active
+{% endblock %}
+
+{% block page-header %}
+    Containers <small>Object Storage</small>
+{% endblock %}
+
+{% block dir-header %}
+    <li>
+        <i class="fa fa-inbox"></i><a href="/containers/"> Containers</a>
+    </li>
+    <li class="active">
+        <i class="fa fa-file"></i> {{ con_name }}
+    </li>
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-12">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <form action="/containers/{{ con_name }}/" method="POST" enctype="multipart/form-data">{% csrf_token %} 
+                    <thead>
+                        <tr>
+                        {% for i in hd %}
+                            <th>{{ i }}</th>
+                        {% endfor %}
+                            <th style="width: 1em;">
+                                <button type="button" class="btn btn-xs btn-success" title="Upload Object" data-toggle="modal" data-target="#99999999">
+                                    <span class="fa fa-upload" />                       
+                                </button>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        {% for i in objects %}
+                            <tr role='row'>
+                                <td class="col-lg-4">
+                                    <button type="submit" class="btn-link" name='obj_name' value="{{ i.name }}">
+                                        {{ i.name }}
+                                    </button>  
+                                </td>
+                                <td class="col-lg-4">{{ i.hash }}</td>
+                                <td>{{ i.last_modified }}</td>                                
+                                <td>{{ i.bytes|filesizeformat }}</td>
+                                <td>
+                                    <button type="submit" class="btn btn-xs btn-danger" title="Delete Object" name='del_object' value="{{ i.name }}" onclick="return confirm('Are you sure to delete {{ i.name }} object?')">
+                                        <span class="fa fa-trash" />                       
+                                    </button>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                    <div class="modal fade" id="99999999" tabindex="-1" role="dialog" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    <h3 class="modal-title">Upload Object</h3>
+                                </div>
+                                <div class="modal-body"> 
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class='col-lg-8'>
+                                                <label for="1414">Object Name:</label>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class='col-lg-8 input'>
+                                                <input id='1414' class='form-control' name="object_name" value="" type="text" placeholder="..."/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputFile">File input</label>
+                                        <input type="file" id="exampleInputFile" name='file_name'>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-success" name='upload_obj'>Upload</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
