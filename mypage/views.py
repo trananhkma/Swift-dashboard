@@ -134,11 +134,10 @@ def objects(request):
             name = request.POST['del_object']
             swift_test.del_object(con_name,name) 
             return redirect(url)
-        #elif 'obj_name' in request.POST:
-        #    name = request.POST['obj_name']
-        #    hea, data = swift_test.object_info(con_name,name)
-        #    result = data
-        #    return HttpResponse(result)
+        elif 'obj_name' in request.POST:
+            name = request.POST['obj_name']
+            swift_test.download_object(con_name, name)
+            return redirect(url)           
         elif 'upload_obj' in request.POST:
             name = request.POST['object_name']
             f_name = request.FILES['file_name']
